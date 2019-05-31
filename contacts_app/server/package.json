@@ -1,0 +1,18 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "scripts": {
+    "start": "json-server db.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "json-server": "^0.15.0"
+  }
+}
