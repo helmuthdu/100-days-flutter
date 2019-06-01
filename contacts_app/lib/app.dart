@@ -6,8 +6,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // The StoreProvider should wrap your MaterialApp or WidgetsApp. This will
-    // ensure all routes have access to the store.
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
