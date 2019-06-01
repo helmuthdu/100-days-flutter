@@ -3,6 +3,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shopping_cart/models/cart_item.dart';
 import 'package:shopping_cart/store/store.dart';
 
+typedef OnItemAddedCallback = Function(String itemName);
+
 class AddItemDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class AddItemDialogWidgetState extends State<AddItemDialogWidget> {
           Expanded(
             child: TextField(
               autofocus: true,
-              decoration: InputDecoration(labelText: 'Item name', hintText: 'eg. Red Apples'),
+              decoration: InputDecoration(labelText: 'Item name', hintText: 'eg. Banana'),
               onChanged: _handleTextChanged,
             ),
           )
@@ -72,5 +74,3 @@ class AddItemDialogWidgetState extends State<AddItemDialogWidget> {
     });
   }
 }
-
-typedef OnItemAddedCallback = Function(String itemName);

@@ -1,36 +1,46 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'store.dart';
+import 'modules/cart-item/actions.dart';
+import 'state.dart';
 
 const String APP_STATE_KEY = "APP_STATE";
 
-void storeCartItemsMiddleware(Store<AppState> store, action, NextDispatcher next) {
-  if (action is AddItemAction || action is ToggleItemStateAction || action is RemoveItemAction) {
-    saveStateToPrefs(store.state);
-  }
+List<Middleware<AppState>> setupMiddleware() {
+  final saveState = saveStateToPrefs();
+  final loadState = loadStateFromPrefs();
 
-  if (action is FetchItemsAction) {
-    loadStateFromPrefs().then((state) {
-      store.dispatch(ItemLoadedAction(state.cartItems));
-    });
-  }
-
-  next(action);
+  return [
+    TypedMiddleware<AppState, FetchItemsAction>(loadState),
+    TypedMiddleware<AppState, ToggleItemStateAction>(saveState),
+    TypedMiddleware<AppState, RemoveItemAction>(saveState),
+    TypedMiddleware<AppState, AddItemAction>(saveState),
+  ];
 }
 
-void saveStateToPrefs(AppState state) async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var stateString = json.encode(state.toJson());
-  await preferences.setString(APP_STATE_KEY, stateString);
+Middleware<AppState> saveStateToPrefs() {
+  return (Store<AppState> store, action, NextDispatcher next) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var stateString = json.encode(store.state.toJson());
+    await preferences.setString(APP_STATE_KEY, stateString);
+    print(stateString);
+
+    next(action);
+  };
 }
 
-Future<AppState> loadStateFromPrefs() async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  var stateString = preferences.getString(APP_STATE_KEY);
-  Map stateMap = jsonDecode(stateString) ?? {};
-  return AppState.fromJson(stateMap);
+Middleware<AppState> loadStateFromPrefs() {
+  return (Store<AppState> store, action, NextDispatcher next) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var stateString = preferences.getString(APP_STATE_KEY);
+
+    if (stateString != null) {
+      Map stateMap = jsonDecode(stateString);
+      store.dispatch(ItemLoadedAction(AppState.fromJson(stateMap).cartItems));
+    }
+
+    next(action);
+  };
 }

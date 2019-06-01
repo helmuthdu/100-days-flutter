@@ -1,17 +1,17 @@
 class CartItem {
   String name;
-  bool checked;
+  bool completed;
 
-  CartItem(this.name, this.checked);
+  CartItem(this.name, this.completed);
 
   CartItem.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        checked = json['checked'];
+        completed = json['checked'];
 
-  Map<String, dynamic> toJson() => {'name': name, 'checked': checked};
+  Map<String, dynamic> toJson() => {'name': name, 'completed': completed};
 
   @override
   String toString() {
-    return "$name: $checked";
+    return "$name: $completed";
   }
 }

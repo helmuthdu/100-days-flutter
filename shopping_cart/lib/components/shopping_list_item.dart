@@ -16,7 +16,7 @@ class ShoppingListItem extends StatelessWidget {
         return (item) => store.dispatch(ToggleItemStateAction(item));
       }, builder: (context, callback) {
         return Checkbox(
-            value: item.checked,
+            value: item.completed,
             onChanged: (bool newValue) {
               callback(CartItem(item.name, newValue));
             });
@@ -29,7 +29,7 @@ class ShoppingListItem extends StatelessWidget {
           return IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
-              callback(CartItem(item.name, item.checked));
+              callback(CartItem(item.name, item.completed));
             },
           );
         },
