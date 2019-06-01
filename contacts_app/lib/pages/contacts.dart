@@ -10,7 +10,7 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Contacts')),
-      body: Consumer<AppStore>(
+      body: Consumer<AppState>(
         builder: (context, state, child) {
           if (state.users.isEmpty) {
             UsersApi.getAll().then((users) => state.addUsers(users));
@@ -43,7 +43,7 @@ class ContactsPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: Consumer<AppStore>(
+      floatingActionButton: Consumer<AppState>(
         builder: (context, state, child) {
           return FloatingActionButton(
             onPressed: () => Navigator.push(
@@ -62,7 +62,7 @@ class ContactsPage extends StatelessWidget {
   }
 
   void _submitForm(
-      Map<String, dynamic> data, BuildContext context, AppStore state) {
+      Map<String, dynamic> data, BuildContext context, AppState state) {
     var user = User.fromJson(data);
     UsersApi.addUser(user)
         .then((res) => state.addUser(user.copyWith(id: res['id'])))
