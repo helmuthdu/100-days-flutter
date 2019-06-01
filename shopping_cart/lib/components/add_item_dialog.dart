@@ -11,8 +11,8 @@ class AddItemDialog extends StatelessWidget {
     return StoreConnector<AppState, OnItemAddedCallback>(
       converter: (store) {
         return (itemName) => store.dispatch(
-          AddItemAction(CartItem(itemName, false)),
-        );
+              AddItemAction(CartItem(itemName, false)),
+            );
       },
       builder: (context, callback) {
         return AddItemDialogWidget(callback);

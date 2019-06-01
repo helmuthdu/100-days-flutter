@@ -8,7 +8,7 @@
 - Work with models
 - Use state manage to save the data
 - Create list of users with avatar
-- Create and submit a form using the http package
+- Load, Create and submit data using the http package
 - Validate form inputs
 
 Tools: dart, flutter, http, provider

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:shopping_cart/models/cart_item.dart';
 import 'package:shopping_cart/components/shopping_list_item.dart';
+import 'package:shopping_cart/models/cart_item.dart';
 import 'package:shopping_cart/store/state.dart';
 
 class ShoppingList extends StatelessWidget {

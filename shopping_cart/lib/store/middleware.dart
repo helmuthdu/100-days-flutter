@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'modules/cart-item/actions.dart';
+import 'modules/cart_item/actions.dart';
 import 'state.dart';
 
 const String APP_STATE_KEY = "APP_STATE";
