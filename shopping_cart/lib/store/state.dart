@@ -17,7 +17,7 @@ class AppState {
       );
 
   AppState.fromJson(Map<String, dynamic> json)
-      : cartItems = (json['cartItems'] as List<Map<String, dynamic>>).map((item) => CartItem.fromJson(item)).toList();
+      : cartItems = (json['cartItems'] as List<dynamic>).map((item) => CartItem.fromJson(item)).toList();
 
   Map<String, dynamic> toJson() => {'cartItems': cartItems};
 

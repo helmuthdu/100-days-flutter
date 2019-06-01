@@ -15,11 +15,11 @@ List<CartItem> _addItem(List<CartItem> items, AddItemAction action) {
 }
 
 List<CartItem> _toggleItemState(List<CartItem> items, ToggleItemStateAction action) {
-  return items.map((item) => item.name == action.item.name ? action.item : item).toList();
+  return items.map((item) => item.id == action.item.id ? action.item : item).toList();
 }
 
 List<CartItem> _removeItem(List<CartItem> items, RemoveItemAction action) {
-  return List.from(items)..removeWhere((item) => item.name == action.item.name);
+  return List.from(items)..removeWhere((item) => item.id == action.item.id);
 }
 
 List<CartItem> _loadItems(List<CartItem> items, ItemLoadedAction action) {

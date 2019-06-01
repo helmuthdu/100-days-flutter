@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,7 +38,7 @@ Middleware<AppState> loadStateFromPrefs() {
     var stateString = preferences.getString(APP_STATE_KEY);
 
     if (stateString != null) {
-      Map stateMap = jsonDecode(stateString);
+      Map<String, dynamic> stateMap = jsonDecode(stateString);
       store.dispatch(ItemLoadedAction(AppState.fromJson(stateMap).cartItems));
     }
 
