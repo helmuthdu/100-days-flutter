@@ -3,6 +3,10 @@ import 'package:redux/redux.dart';
 import 'package:shopping_cart/models/cart_item.dart';
 import 'package:shopping_cart/store/store.dart';
 
+typedef OnStateChanged = Function(CartItem item);
+
+typedef OnRemoveIconClicked = Function(CartItem item);
+
 class ShoppingListItem extends StatelessWidget {
   final CartItem item;
 
@@ -83,7 +87,3 @@ class ShoppingListItem extends StatelessWidget {
   void _toggleItem(bool completed) =>
       store.dispatch(ToggleItemStateAction(item.copyWith(completed: completed)));
 }
-
-typedef OnStateChanged = Function(CartItem item);
-
-typedef OnRemoveIconClicked = Function(CartItem item);

@@ -23,9 +23,8 @@ List<Middleware<AppState>> setupMiddleware() {
 Middleware<AppState> saveStateToPrefs() {
   return (Store<AppState> store, action, NextDispatcher next) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    var stateString = json.encode(store.state.toJson());
+    var stateString = jsonEncode(store.state.toJson());
     await preferences.setString(APP_STATE_KEY, stateString);
-    print(stateString);
 
     next(action);
   };
