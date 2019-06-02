@@ -24,10 +24,10 @@ class ToggleItemStateAction {
   }
 }
 
-class ItemLoadedAction {
+class LoadItemsAction {
   final List<CartItem> items;
 
-  ItemLoadedAction(this.items);
+  LoadItemsAction(this.items);
 
   @override
   String toString() {

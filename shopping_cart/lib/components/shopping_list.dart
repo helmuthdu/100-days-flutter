@@ -9,7 +9,7 @@ class ShoppingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Map<String, Object>>(
-      converter: (store) => {'items': getCartItemsSorted(store.state.cartItems), 'store': store},
+      converter: (store) => {'items': itemsSortedSelector(store.state.cartItems), 'store': store},
       builder: (context, payload) {
         return ListView.builder(
           itemCount: (payload['store'] as Store<AppState>).state.cartItems.length,

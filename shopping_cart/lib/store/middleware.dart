@@ -37,7 +37,7 @@ Middleware<AppState> loadStateFromPrefs() {
 
     if (stateString != null) {
       Map<String, dynamic> stateMap = jsonDecode(stateString);
-      store.dispatch(ItemLoadedAction(AppState.fromJson(stateMap).cartItems));
+      store.dispatch(LoadItemsAction(AppState.fromJson(stateMap).cartItems));
     }
 
     next(action);
