@@ -12,6 +12,12 @@ class CartItem {
   })  : this.id = id ?? Uuid().v4(),
         this.completed = completed ?? false;
 
+  CartItem copyWith({String id, String name, bool completed}) => CartItem(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        completed: completed ?? this.completed,
+      );
+
   CartItem.fromJson(Map<String, dynamic> json)
       : id = json['id'] ?? Uuid().v4(),
         name = json['name'],

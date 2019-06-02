@@ -6,7 +6,7 @@ import 'package:shopping_cart/store/store.dart';
 class ShoppingListItem extends StatelessWidget {
   final CartItem item;
 
-  Store<AppState> store;
+  final Store<AppState> store;
 
   ShoppingListItem(this.item, this.store);
 
@@ -73,14 +73,15 @@ class ShoppingListItem extends StatelessWidget {
     ));
   }
 
-  void _restoreItem() =>
-      store.dispatch(AddItemAction(CartItem(id: item.id, name: item.name, completed: item.completed)));
+  void _restoreItem() {
+    store.dispatch(AddItemAction(item));
+  }
 
   void _deleteItem() =>
-      store.dispatch(RemoveItemAction(CartItem(id: item.id, name: item.name, completed: item.completed)));
+      store.dispatch(RemoveItemAction(item));
 
   void _toggleItem(bool completed) =>
-      store.dispatch(ToggleItemStateAction(CartItem(id: item.id, name: item.name, completed: completed)));
+      store.dispatch(ToggleItemStateAction(item.copyWith(completed: completed)));
 }
 
 typedef OnStateChanged = Function(CartItem item);
