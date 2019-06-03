@@ -1,22 +1,23 @@
 import 'package:shopping_cart/enums/visibility_filter.dart';
 import 'package:shopping_cart/models/cart_item.dart';
+import 'package:shopping_cart/store/state.dart';
 
-List<CartItem> itemsSortedSelector(List<CartItem> cartItems) =>
-    List.from(cartItems)..sort((a, b) => a.createdAt.compareTo(b.createdAt));
+List<CartItem> itemsSortedSelector(AppState state) =>
+    List.from(state.cartItems)..sort((a, b) => a.createdAt.compareTo(b.createdAt));
 
-bool isAllItemsCompletedSelector(List<CartItem> cartItems) => cartItems.every((cartItem) => cartItem.completed);
+bool isAllItemsCompletedSelector(AppState state) => state.cartItems.every((cartItem) => cartItem.completed);
 
-int activeItemsCountSelector(List<CartItem> cartItems) =>
-    cartItems.fold(0, (sum, cartItem) => !cartItem.completed ? ++sum : sum);
+int activeItemsCountSelector(AppState state) =>
+    state.cartItems.fold(0, (sum, cartItem) => !cartItem.completed ? ++sum : sum);
 
-int completedItemsCountSelector(List<CartItem> cartItems) =>
-    cartItems.fold(0, (sum, cartItem) => cartItem.completed ? ++sum : sum);
+int completedItemsCountSelector(AppState state) =>
+    state.cartItems.fold(0, (sum, cartItem) => cartItem.completed ? ++sum : sum);
 
 List<CartItem> itemsWhereSelector(
-  List<CartItem> cartItems,
+  AppState state,
   VisibilityFilter activeFilter,
 ) {
-  return cartItems.where((cartItem) {
+  return state.cartItems.where((cartItem) {
     switch (activeFilter) {
       case VisibilityFilter.active:
         return !cartItem.completed;

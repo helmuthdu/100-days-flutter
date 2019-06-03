@@ -3,11 +3,11 @@ import 'package:shopping_cart/models/cart_item.dart';
 
 @immutable
 class AppState {
-  static var empty = AppState();
+  static var empty = AppState(cartItems: []);
 
   final List<CartItem> cartItems;
 
-  AppState({this.cartItems = const []});
+  AppState({@required this.cartItems});
 
   AppState copyWith({
     List<CartItem> cartItems,

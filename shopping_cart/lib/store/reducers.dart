@@ -1,4 +1,4 @@
 import 'modules/cart_item/reducers.dart';
 import 'state.dart';
 
-AppState appStateReducers(AppState state, action) => AppState(cartItems: cartItemReducers(state.cartItems, action));
+AppState appReducer(AppState state, action) => AppState(cartItems: cartItemReducers(state.cartItems, action));

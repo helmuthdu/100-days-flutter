@@ -21,12 +21,10 @@ class ShoppingListItem extends StatelessWidget {
       onDismissed: (direction) {
         if (direction == DismissDirection.endToStart) {
           _deleteItem();
-          _buildOnDeleteSnackBar(context);
+          _buildSnackBar(context, "${item.name} removed");
         } else {
           _deleteItem();
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("${item.name} snoozed"),
-          ));
+          _buildSnackBar(context, "${item.name} snoozed");
         }
       },
       background: Container(
@@ -60,16 +58,16 @@ class ShoppingListItem extends StatelessWidget {
           icon: Icon(Icons.delete),
           onPressed: () {
             _deleteItem();
-            _buildOnDeleteSnackBar(context);
+            _buildSnackBar(context, "${item.name} removed");
           },
         ),
       ),
     );
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> _buildOnDeleteSnackBar(BuildContext context) {
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> _buildSnackBar(BuildContext context, String text) {
     return Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text("${item.name} removed"),
+      content: Text(text),
       action: SnackBarAction(
         label: 'UNDO',
         onPressed: () => _restoreItem(),

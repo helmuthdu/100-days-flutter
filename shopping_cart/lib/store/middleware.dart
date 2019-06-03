@@ -8,7 +8,7 @@ import 'state.dart';
 
 const String APP_STATE_KEY = "APP_STATE";
 
-List<Middleware<AppState>> setupMiddleware() {
+List<Middleware<AppState>> createMiddleware() {
   final saveState = saveStateToPrefs();
   final loadState = loadStateFromPrefs();
 

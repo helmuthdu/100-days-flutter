@@ -6,7 +6,9 @@ import 'package:shopping_cart/pages/shopping.dart';
 import 'package:shopping_cart/store/store.dart';
 
 class App extends StatelessWidget {
-  final store = Store<AppState>(appStateReducers, initialState: AppState.empty, middleware: setupMiddleware());
+  final Store<AppState> store;
+
+  App({Key key, this.store}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
