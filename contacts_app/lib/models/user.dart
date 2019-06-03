@@ -63,8 +63,8 @@ class User {
         'username': TextEditingController(),
         'email': TextEditingController(),
         'phoneNumber': TextEditingController(),
-        'avatar': TextEditingController.fromValue(TextEditingValue(
-            text: 'https://api.adorable.io/avatars/128/.png')),
+        'avatar': TextEditingController.fromValue(
+            TextEditingValue(text: 'https://api.adorable.io/avatars/128/.png')),
         'notes': TextEditingController(),
       };
 

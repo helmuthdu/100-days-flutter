@@ -5,7 +5,8 @@ class SubmitFormButton extends StatelessWidget {
   final FormState form;
   final Function onSubmit;
 
-  const SubmitFormButton({Key key, this.data, this.form, this.onSubmit}) : super(key: key);
+  const SubmitFormButton({Key key, this.data, this.form, this.onSubmit})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

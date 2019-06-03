@@ -9,7 +9,6 @@ class UsersApi {
     try {
       final List response =
           jsonDecode((await http.get('http://localhost:3000/users')).body);
-      print(response);
       return response.map((user) => User.fromJson(user)).toList();
     } catch (err) {
       return [];
@@ -18,9 +17,9 @@ class UsersApi {
 
   static Future<Map<String, dynamic>> addUser(User user) async {
     try {
-      return jsonDecode((await http.post('http://localhost:3000/users',
-              body: user.toJson()))
-          .body);
+      return jsonDecode(
+          (await http.post('http://localhost:3000/users', body: user.toJson()))
+              .body);
     } catch (err) {
       return null;
     }
